@@ -121,8 +121,7 @@ static ssize_t qcow2_zlib_compress(void *dest, size_t dest_size,
     }
 
     if(ret > 0){
-        fprintf(stderr, "ZSTD: src=%zu out=%zu\n", src_size, ret);
-        if (ret >= src_size / 4) {
+        if (ret >= src_size / 3) {
             ret = -ENOMEM;
         }        
     }
