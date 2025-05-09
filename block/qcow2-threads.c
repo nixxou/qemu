@@ -242,7 +242,7 @@ static ssize_t qcow2_zstd_compress(void *dest, size_t dest_size,
     /* make sure that zstd didn't overflow the dest buffer */
     assert(output.pos <= dest_size);  
     //fprintf(stderr, "ZSTD: src=%zu out=%zu\n", src_size, output.pos);
-    if (output.pos >= src_size / 4) {
+    if (output.pos >= src_size / 3) {
         ret = -ENOMEM;
     } else {
         ret = output.pos;
