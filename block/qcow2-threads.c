@@ -240,6 +240,7 @@ static ssize_t qcow2_zstd_compress(void *dest, size_t dest_size,
         goto out;
     }    
     ret = output.pos;
+    ret = -EIO;
 out:
     ZSTD_freeCCtx(cctx);
     return ret;
