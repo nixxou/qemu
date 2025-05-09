@@ -120,7 +120,11 @@ static ssize_t qcow2_zlib_compress(void *dest, size_t dest_size,
         ret = (ret == Z_OK ? -ENOMEM : -EIO);
     }
 
+    if(ret > 0){
+        fprintf(stderr, "ZSTD: src=%zu out=%zu\n", src_size, ret);
+    }
     deflateEnd(&strm);
+    
 
     return ret;
 }
