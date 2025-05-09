@@ -234,13 +234,8 @@ static ssize_t qcow2_zstd_compress(void *dest, size_t dest_size,
     }
 
     /* make sure that zstd didn't overflow the dest buffer */
-    assert(output.pos <= dest_size);
-    if (output.pos >= src_size * 0.5) {
-        ret = -EIO;  // compression jugée inefficace
-        goto out;
-    }    
+    assert(output.pos <= dest_size);  
     ret = output.pos;
-    ret = -EIO;
 out:
     ZSTD_freeCCtx(cctx);
     return ret;
