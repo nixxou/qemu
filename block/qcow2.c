@@ -4695,7 +4695,7 @@ qcow2_co_pwritev_compressed_task(BlockDriverState *bs,
 
     out_len = qcow2_co_compress(bs, out_buf, s->cluster_size - 1,
                                 buf, s->cluster_size);
-    if(out_len > 0) out_len = -ENOMEM;
+
     if (out_len == -ENOMEM) {
         /* could not compress: write normal cluster */
         ret = qcow2_co_pwritev_part(bs, offset, bytes, qiov, qiov_offset, 0);
